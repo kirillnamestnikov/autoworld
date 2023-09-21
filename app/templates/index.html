@@ -1,0 +1,38 @@
+{% extends "basic.html" %}
+
+{% block content %}
+    <div class="leftcolumn">
+    <h2>Добро пожаловать, {{ current_user.username }}!</h2>
+    <div class="row">
+    <h3>
+        {% for post in posts %}
+        <div class="card">
+            {{ post.year }} {{ post.car_brand }} {{ post.model }}, {{ post.mileage }} км, {{ post.power }} лс ({{ post.price }} ₽) <br>
+            <br>
+            {{ post.location }}, цвет: {{ post.color }}, двигатель: {{ post.engine }}, коробка передач: {{ post.transmission }} <br>
+            <br>
+            {{ post.description }} <br>
+        </div>
+        {% endfor %}
+    </h3>
+    </div>
+    </div>
+    <div class="rightcolumn">
+        <div class="card">
+            <h2>О нас</h2>
+            <p>Мы помогаем найти людям машину, основываясь на их предпочтениях.</p>
+        </div>
+        <div class="card">
+            <h3>Популярное</h3>
+            {{ random_obj.year }} {{ random_obj.car_brand }} {{ random_obj.model }}, {{ random_obj.mileage }} км, {{ random_obj.power }} лс ({{ random_obj.price }} ₽) <br>
+            <br>
+            {{ random_obj.location }}, цвет: {{ random_obj.color }}, двигатель: {{ random_obj.engine }}, коробка передач: {{ random_obj.transmission }} <br>
+            <br>
+            {{ random_obj.description }} <br>
+        </div>
+        <div class="card">
+            <h3> Следите за нами</h3>
+            <p> AutoWorld </p>
+        </div>
+    </div>
+{% endblock %}

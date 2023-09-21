@@ -1,0 +1,44 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - autoworld</title>
+        {% else %}
+        <title>autoworld</title>
+        {% endif %}
+        <link href="{{ url_for('static', filename='general.css') }}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <h1>AutoWorld</h1>
+            <p>Лучший сайт об автомобилях.</p>
+        </div>
+        <div>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Основная страница</a></li>
+                {% if current_user.is_anonymous %}
+                <li><a href="{{ url_for('login') }}">Вход</a></li>
+                {% else %}
+                <li><a href="{{ url_for('user', username=current_user.username) }}">Профиль</a></li>
+                <li><a href="{{ url_for('logout') }}">Выход</a></li>
+                <li><a href="{{ url_for('explore') }}">Объявления</a></li>
+                <li><a href="{{ url_for('search') }}">Искать</a></li>
+            </ul>
+            {% endif %}
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+    <div class="footer">
+        ©AutoWorld 2022
+        <a href="https://t.me/autoworld73"><img src="{{ url_for('static', filename='images/telegram.jpg') }}" width="50" height="50" border="0" alt="Подпишись на наш телеграмм" title="Следи за обновлениями в телеграмме."></a>
+    </div>
+</html>

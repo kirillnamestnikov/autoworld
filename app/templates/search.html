@@ -1,0 +1,12 @@
+{% extends "basic.html" %}
+{% block content %}
+<form action="search" method="POST">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.car_brand.label }}
+        {{ form.car_brand(size=32) }}
+        {{ form.submit() }}
+    </p>
+</form>
+
+{% endblock %}
